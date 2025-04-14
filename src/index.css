@@ -13,16 +13,25 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 196 100% 44%;
+    /* Основные медицинские цвета */
+    --medical-primary: 195 85% 41%; /* Бирюзовый */
+    --medical-secondary: 173 80% 40%; /* Мятный */
+    --medical-tertiary: 219 70% 45%; /* Синий */
+    --medical-light: 195 30% 95%; /* Светло-голубой */
+    --medical-dark: 210 50% 20%; /* Тёмно-синий */
+    --medical-accent: 359 83% 71%; /* Коралловый */
+
+    /* Базовые цвета UI */
+    --primary: 195 85% 41%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 178 75% 32%;
+    --secondary: 173 80% 40%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 164 95% 43%;
+    --accent: 359 83% 71%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,45 +39,40 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 196 100% 44%;
+    --ring: 195 85% 41%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 196 100% 44%;
+    --sidebar-background: 195 85% 41%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 196 100% 60%;
+    --sidebar-primary: 219 70% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 178 75% 32%;
+    --sidebar-accent: 359 83% 71%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 178 75% 36%;
-    --sidebar-ring: 196 100% 60%;
-
-    /* Медицинские цвета */
-    --medical-blue: 196 100% 44%;
-    --medical-teal: 178 75% 32%;
-    --medical-green: 164 95% 43%;
+    --sidebar-border: 173 80% 40%;
+    --sidebar-ring: 195 85% 41%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 210 50% 10%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 210 50% 15%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 210 50% 15%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 196 100% 44%;
+    --primary: 195 85% 41%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 178 75% 32%;
+    --secondary: 173 80% 40%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 164 95% 43%;
+    --accent: 359 83% 61%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -76,21 +80,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 196 100% 44%;
-    
-    --sidebar-background: 196 100% 30%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 196 100% 44%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 178 75% 26%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 178 75% 30%;
-    --sidebar-ring: 196 100% 44%;
-
-    /* Медицинские цвета */
-    --medical-blue: 196 100% 44%;
-    --medical-teal: 178 75% 32%;
-    --medical-green: 164 95% 43%;
+    --ring: 195 85% 41%;
   }
 }
 
@@ -100,20 +90,20 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 
-  /* Дополнительные стили для улучшения удобства использования */
+  /* Типографика для удобства */
   h1, h2, h3, h4, h5, h6 {
     @apply font-medium tracking-tight;
   }
 
   h1 {
-    @apply text-3xl md:text-4xl;
+    @apply text-3xl md:text-4xl lg:text-5xl;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl;
+    @apply text-2xl md:text-3xl lg:text-4xl;
   }
 
   h3 {
@@ -122,5 +112,71 @@
 
   p {
     @apply leading-relaxed;
+  }
+
+  /* Фокус для доступности */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+}
+
+@layer components {
+  /* Общие компоненты */
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-title {
+    @apply text-center mb-12;
+  }
+
+  .section-header {
+    @apply mb-8 md:mb-12;
+  }
+
+  /* Анимированный градиент */
+  .animated-gradient {
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  /* Улучшенная доступность */
+  .accessibility-nav-item {
+    @apply text-lg font-medium py-2 px-4 rounded-md transition-colors 
+    hover:bg-medical-light focus:bg-medical-light focus:outline-none;
+  }
+
+  /* Карточки */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Фото стиль */
+  .image-frame {
+    @apply rounded-lg overflow-hidden shadow-md;
+  }
+
+  .image-overlay {
+    @apply relative overflow-hidden;
+  }
+
+  .image-overlay::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-t from-medical-dark/50 to-transparent opacity-0 transition-opacity;
+  }
+
+  .image-overlay:hover::after {
+    @apply opacity-100;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

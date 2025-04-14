@@ -5,16 +5,20 @@ import DoctorsSection from "@/components/DoctorsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AppointmentSection from "@/components/AppointmentSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
+import QuickActions from "@/components/QuickActions";
 
 const Index = () => {
   return (
     <Layout>
+      <AccessibilityWidget />
       <HeroSection />
       <ServicesSection />
       <AdvantagesSection />
       <DoctorsSection />
       <TestimonialsSection />
       <AppointmentSection />
+      <QuickActions />
     </Layout>
   );
 };
